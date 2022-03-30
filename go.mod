@@ -1,5 +1,5 @@
-module github.com/libdns/template
+module github.com/gsmlg-dev/libdns-zdns
 
-go 1.16
+go 1.17
 
 require github.com/libdns/libdns v0.2.0
