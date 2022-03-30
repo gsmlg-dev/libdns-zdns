@@ -3,7 +3,6 @@ package zdns
 import (
 	"context"
 	"fmt"
-	"strconv"
 	"strings"
 	"time"
 
@@ -11,10 +10,9 @@ import (
 	"github.com/libdns/libdns"
 )
 
-func (p *Provider) setZdnsToken() error {
+func (p *Provider) setZdnsToken() {
 	zdns.SetToken(p.APIToken)
 
-	return nil
 }
 
 func (p *Provider) getDNSEntries(ctx context.Context, zone string) ([]libdns.Record, error) {
@@ -68,7 +66,7 @@ func (p *Provider) addDNSEntry(ctx context.Context, zone string, record libdns.R
 	rec, err := zdns.CreateRrInZone(fixZoneName(zone), entry.Name, entry.Type, entry.Ttl, entry.Rdata)
 	if err != nil {
 		// fmt.Printf("%s, %s, %s, %s, %v", zone, entry.Name, entry.Value, err.Error(), record)
-		return record, fmt.Errorf("Create record err.Zone:%s, Name: %s, Value: %s, Error:%s, %v", zone, entry.Name, entry.Value, err.Error(), record)
+		return record, fmt.Errorf("create record err.Zone:%s, Name: %s, Rdata: %s, Error:%s, %v", zone, entry.Name, entry.Rdata, err.Error(), record)
 	}
 	record.ID = rec[0].Id
 
@@ -84,7 +82,7 @@ func (p *Provider) removeDNSEntry(ctx context.Context, zone string, record libdn
 	_, err := zdns.DeleteRr(record.ID)
 	if err != nil {
 		// fmt.Printf("%s, %s, %s, %s, %v", zone, record.Name, record.Value, err.Error(), record)
-		return record, fmt.Errorf("Remove record err.Zone:%s, Name: %s, Value: %s, Error:%s", zone, record.Name, record.Value, err.Error())
+		return record, fmt.Errorf("remove record err.Zone:%s, Name: %s, Rdata: %s, Error:%s", zone, record.Name, record.Value, err.Error())
 	}
 
 	return record, nil
@@ -100,13 +98,13 @@ func (p *Provider) updateDNSEntry(ctx context.Context, zone string, record libdn
 		Name:  extractRecordName(record.Name, fixZoneName(zone)),
 		Rdata: record.Value,
 		Type:  record.Type,
-		Ttl:   strconv.Itoa(int(record.TTL.Seconds())),
+		Ttl:   int(record.TTL.Seconds()),
 	}
 
 	_, err := zdns.UpdateRr(fixZoneName(zone), record.ID, entry.Name, entry.Type, entry.Ttl, entry.Rdata)
 	if err != nil {
 		// fmt.Printf("%s, %s, %s, %s, %v", zone, entry.Name, entry.Value, err.Error(), record)
-		return record, fmt.Errorf("Update record err.Zone:%s, Name: %s, Value: %s, Error:%s, %v", zone, entry.Name, entry.Value, err.Error(), record)
+		return record, fmt.Errorf("update record err.Zone:%s, Name: %s, Rdata: %s, Error:%s, %v", zone, entry.Name, entry.Rdata, err.Error(), record)
 	}
 
 	return record, nil
