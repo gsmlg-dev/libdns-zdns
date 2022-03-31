@@ -16,8 +16,6 @@ func (p *Provider) setZdnsToken() {
 }
 
 func (p *Provider) getDNSEntries(ctx context.Context, zone string) ([]libdns.Record, error) {
-	p.mu.Lock()
-	defer p.mu.Unlock()
 
 	p.setZdnsToken()
 
@@ -51,8 +49,6 @@ func extractRecordName(name string, zone string) string {
 }
 
 func (p *Provider) addDNSEntry(ctx context.Context, zone string, record libdns.Record) (libdns.Record, error) {
-	p.mu.Lock()
-	defer p.mu.Unlock()
 
 	p.setZdnsToken()
 
@@ -74,8 +70,6 @@ func (p *Provider) addDNSEntry(ctx context.Context, zone string, record libdns.R
 }
 
 func (p *Provider) removeDNSEntry(ctx context.Context, zone string, record libdns.Record) (libdns.Record, error) {
-	p.mu.Lock()
-	defer p.mu.Unlock()
 
 	p.setZdnsToken()
 
@@ -89,8 +83,6 @@ func (p *Provider) removeDNSEntry(ctx context.Context, zone string, record libdn
 }
 
 func (p *Provider) updateDNSEntry(ctx context.Context, zone string, record libdns.Record) (libdns.Record, error) {
-	p.mu.Lock()
-	defer p.mu.Unlock()
 
 	p.setZdnsToken()
 

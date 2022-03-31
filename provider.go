@@ -4,14 +4,12 @@ package zdns
 
 import (
 	"context"
-	"sync"
 	"time"
 
 	"github.com/libdns/libdns"
 )
 
 type Provider struct {
-	mu       sync.Mutex
 	APIToken string `json:"api_token,omitempty"`
 }
 
