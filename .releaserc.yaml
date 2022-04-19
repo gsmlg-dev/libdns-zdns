@@ -1,0 +1,17 @@
+repositoryUrl: https://github.com/gsmlg-dev/libdns-zdns.git
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - "@semantic-release/github"
+  - - "@semantic-release/exec"
+    - "prepareCmd": >-
+        echo ${nextRelease.version};
+        go get -u
+      "publishCmd": "echo publish libdns-zdns ${nextRelease.version}"
+branches:
+  - +([0-9])?(.{+([0-9]),x}).x
+  - main
+  - next
+  - next-major
+  - { name: "beta", prerelease: true }
+  - { name: "alpha", prerelease: true }
