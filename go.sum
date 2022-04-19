@@ -1,6 +1,8 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/gsmlg-dev/gsmlg-golang v0.0.0-20220330090341-b4b60015944b h1:Tk4JNctcYelneWvj5bj+2RUq9eJ5b2wPf0Iiciis1yk=
 github.com/gsmlg-dev/gsmlg-golang v0.0.0-20220330090341-b4b60015944b/go.mod h1:6UswD8slOZeyp4BAfAJRK4U+y3+0VmUYEEMqEfYyXu8=
+github.com/gsmlg-dev/gsmlg-golang v1.0.1 h1:+oFHqw2k2eaVoemk9WtmkFU9BvoqpHBR1bPxBMrUDRo=
+github.com/gsmlg-dev/gsmlg-golang v1.0.1/go.mod h1:6UswD8slOZeyp4BAfAJRK4U+y3+0VmUYEEMqEfYyXu8=
 github.com/libdns/libdns v0.2.1 h1:Wu59T7wSHRgtA0cfxC+n1c/e+O3upJGWytknkmFEDis=
 github.com/libdns/libdns v0.2.1/go.mod h1:yQCXzk1lEZmmCPa857bnk4TsOiqYasqpyOEeSObbb40=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
