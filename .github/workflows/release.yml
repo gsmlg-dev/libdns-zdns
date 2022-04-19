@@ -27,7 +27,7 @@ jobs:
         with:
           go-version: '1.17.8'
 
-      - run: echo "machine github.com login ${GIT_USER_ID} password ${ACCESS_TOKEN} " > ~/.netrc
+      - run: git config --global url.https://${GIT_USER_ID}:${ACCESS_TOKEN}@github.com/.insteadOf https://github.com/
         env:
           GIT_USER_ID: ${{ secrets.GIT_USER_ID }}
           ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
